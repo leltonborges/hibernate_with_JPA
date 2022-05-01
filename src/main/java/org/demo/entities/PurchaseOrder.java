@@ -1,9 +1,6 @@
 package org.demo.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.demo.entities.pk.PurchaseOrderPK;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -12,7 +9,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "tb_purchase_order")
@@ -21,10 +18,12 @@ public class PurchaseOrder {
     @EmbeddedId
     private PurchaseOrderPK orderPK;
 
+    @NonNull
     @MapsId("product")
     @ManyToOne
     private Product product;
 
+    @NonNull
     @MapsId("client")
     @ManyToOne
     private Client client;
