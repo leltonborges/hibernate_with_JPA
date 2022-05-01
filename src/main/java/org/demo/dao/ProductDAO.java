@@ -2,6 +2,7 @@ package org.demo.dao;
 
 import org.demo.entities.Product;
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class ProductDAO {
     private EntityManager manager;
@@ -10,16 +11,25 @@ public class ProductDAO {
         this.manager = manager;
     }
 
-    public void save(Product product){
+    public void save(Product product) {
         this.manager.persist(product);
     }
 
-    public Product update(Product product){
+    public Product update(Product product) {
         return manager.merge(product);
     }
 
-    public void delete(Product product){
+    public void delete(Product product) {
         product = manager.merge(product);
         manager.remove(product);
     }
+
+    public Product findById(Long id) {
+        return manager.find(Product.class, id);
+    }
+
+    public List<Product> findAll() {
+        return manager.createQuery("select p from Product p", Product.class).getResultList();
+    }
+
 }

@@ -1,7 +1,9 @@
 package org.demo.dao;
 
 import org.demo.entities.Client;
+import org.demo.entities.PurchaseOrder;
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class ClientDAO {
     private EntityManager manager;
@@ -10,7 +12,15 @@ public class ClientDAO {
         this.manager = manager;
     }
 
-    public void save(Client client){
+    public void save(Client client) {
         this.manager.persist(client);
+    }
+
+    public Client findById(Long id) {
+        return manager.find(Client.class, id);
+    }
+
+    public List<Client> findAll() {
+        return manager.createQuery("select p from Client p", Client.class).getResultList();
     }
 }

@@ -14,10 +14,16 @@ import java.math.BigDecimal;
 
 public class Application {
     public static void main(String[] args) {
-        cadastraProduct();
+        saveEntities();
+
+        EntityManager manager = JPAUtil.getEntityManager();
+        ProductDAO productDAO = new ProductDAO(manager);
+
+        productDAO.findAll().forEach(System.out::println);
+
     }
 
-    private static void cadastraProduct() {
+    private static void saveEntities() {
         Category celulares = new Category(null, "Celulares");
         Category carros = new Category(null, "Carros");
         Product p1 = new Product(null, "Phone", "Xioami Redmi", BigDecimal.valueOf(2399), celulares, null, null);

@@ -13,6 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString
 @Table(name = "tb_product")
 public class Product implements Serializable {
     private static final long serialVersionUID = -3123991946224455757L;

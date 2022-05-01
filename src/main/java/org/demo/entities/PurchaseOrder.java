@@ -9,6 +9,7 @@ import java.util.Date;
 
 @Getter
 @Setter
+@ToString
 @Entity
 @Table(name = "tb_purchase_order")
 public class PurchaseOrder {

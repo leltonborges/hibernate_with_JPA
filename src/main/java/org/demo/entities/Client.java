@@ -8,6 +8,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "tb_client")
 public class Client implements Serializable {
