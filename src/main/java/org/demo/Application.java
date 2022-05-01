@@ -10,16 +10,16 @@ import java.math.BigDecimal;
 
 public class Application {
     public static void main(String[] args) {
-        Category c1 = new Category(null, "Celulares");
+        Category celulares = new Category(null, "Celulares");
 
-        Product p1 = new Product(null, "Phone", "Xioami Redmi", BigDecimal.valueOf(2399), c1, null, null);
+        Product p1 = new Product(null, "Phone", "Xioami Redmi", BigDecimal.valueOf(2399), celulares, null, null);
         EntityManager manager = JPAUtil.getEntityManager();
 
         CategoryDAO categoryDAO = new CategoryDAO(manager);
         ProductDAO productDAO = new ProductDAO(manager);
 
         manager.getTransaction().begin();
-        categoryDAO.save(c1);
+        categoryDAO.save(celulares);
         productDAO.save(p1);
         manager.getTransaction().commit();
     }

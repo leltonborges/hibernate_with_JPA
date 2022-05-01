@@ -16,7 +16,7 @@ public class Category {
 
     @Id
     @GeneratedValue(generator = "sequence_table_category")
-    @SequenceGenerator(name = "sequence_table_category", sequenceName = "SEQUENCE_TB_category", initialValue = 1, allocationSize = 1)
+    @SequenceGenerator(name = "sequence_table_category", sequenceName = "SEQUENCE_TB_CATEGORY", initialValue = 1, allocationSize = 1)
     private Long id;
     private String nome;
 }
