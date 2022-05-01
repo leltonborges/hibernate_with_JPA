@@ -9,8 +9,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -29,7 +27,7 @@ public class Product implements Serializable {
     private String name;
     private String description;
     private BigDecimal price;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private Category category;
     @CreationTimestamp
     private Date createdAt;
