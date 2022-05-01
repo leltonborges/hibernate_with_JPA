@@ -32,4 +32,18 @@ public class ProductDAO {
         return manager.createQuery("select p from Product p", Product.class).getResultList();
     }
 
+    public List<Product> findByName(String name){
+        return manager.createQuery("select p from Product p where p.name = :pName", Product.class)
+//        return manager.createQuery("select p from Product p where p.name = ?1", Product.class)
+                .setParameter("pName", name)
+                .getResultList();
+    }
+
+    public List<Product> findByCategoryName(String name){
+        return manager.createQuery("select p from Product p where p.category.nome = :cName", Product.class)
+                .setParameter("cName", name)
+                .getResultList();
+    }
+
+
 }

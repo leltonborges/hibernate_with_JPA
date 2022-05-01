@@ -19,7 +19,8 @@ public class Application {
         EntityManager manager = JPAUtil.getEntityManager();
         ProductDAO productDAO = new ProductDAO(manager);
 
-        productDAO.findAll().forEach(System.out::println);
+        System.out.println(productDAO.findByName("Phone"));
+        System.out.println(productDAO.findByCategoryName("Celulares"));
 
     }
 
