@@ -12,7 +12,6 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"createdAt", "updatedAt"})
 @Entity
 @Table(name = "tb_product")
 public class Product implements Serializable {

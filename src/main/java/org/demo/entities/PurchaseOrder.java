@@ -10,7 +10,6 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@EqualsAndHashCode(exclude = {"orderPK","createdAt", "updatedAt"})
 @Table(name = "tb_purchase_order")
 public class PurchaseOrder {
 

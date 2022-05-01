@@ -13,11 +13,11 @@ import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 
 public class Application {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Category celulares = new Category(null, "Celulares");
         Product p1 = new Product(null, "Phone", "Xioami Redmi", BigDecimal.valueOf(2399), celulares, null, null);
         Client  lia = new Client(null, "Lia", "lia@lia.com");
-        PurchaseOrder order1 = new PurchaseOrder();
+        PurchaseOrder order1 = new PurchaseOrder(p1, lia);
 
         EntityManager manager = JPAUtil.getEntityManager();
         CategoryDAO categoryDAO = new CategoryDAO(manager);
@@ -31,10 +31,12 @@ public class Application {
         productDAO.save(p1);
         clientDAO.save(lia);
         manager.flush();
-        order1 = new PurchaseOrder(p1, lia);
         purchaseOrderDAO.save(order1);
-
         manager.flush();
+        manager.clear();
+        order1 = manager.merge(order1);
+        Thread.sleep(2000);
+        purchaseOrderDAO.save(order1);
 
         manager.getTransaction().commit();
     }
