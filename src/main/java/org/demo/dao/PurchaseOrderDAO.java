@@ -13,4 +13,13 @@ public class PurchaseOrderDAO {
     public void save(PurchaseOrder purchaseOrder){
         this.manager.persist(purchaseOrder);
     }
+
+    public PurchaseOrder update(PurchaseOrder purchaseOrder){
+        return manager.merge(purchaseOrder);
+    }
+
+    public void delete(PurchaseOrder purchaseOrder){
+        purchaseOrder = manager.merge(purchaseOrder);
+        manager.remove(purchaseOrder);
+    }
 }

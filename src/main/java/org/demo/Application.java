@@ -14,6 +14,10 @@ import java.math.BigDecimal;
 
 public class Application {
     public static void main(String[] args) {
+        cadastraProduct();
+    }
+
+    private static void cadastraProduct() {
         Category celulares = new Category(null, "Celulares");
         Category carros = new Category(null, "Carros");
         Product p1 = new Product(null, "Phone", "Xioami Redmi", BigDecimal.valueOf(2399), celulares, null, null);
@@ -36,8 +40,8 @@ public class Application {
         purchaseOrderDAO.save(order1);
         manager.flush();
         manager.clear();
-        carros = manager.merge(carros);
-        order1 = manager.merge(order1);
+        carros = categoryDAO.update(carros);
+        order1 = purchaseOrderDAO.update(order1);
         purchaseOrderDAO.save(order1);
 
         manager.remove(carros);

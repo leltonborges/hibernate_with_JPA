@@ -13,4 +13,13 @@ public class CategoryDAO {
     public void save(Category category){
         this.manager.persist(category);
     }
+
+    public Category update(Category category){
+        return manager.merge(category);
+    }
+
+    public void delete(Category category){
+        category = manager.merge(category);
+        manager.remove(category);
+    }
 }

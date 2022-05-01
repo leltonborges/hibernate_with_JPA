@@ -13,4 +13,13 @@ public class ProductDAO {
     public void save(Product product){
         this.manager.persist(product);
     }
+
+    public Product update(Product product){
+        return manager.merge(product);
+    }
+
+    public void delete(Product product){
+        product = manager.merge(product);
+        manager.remove(product);
+    }
 }
