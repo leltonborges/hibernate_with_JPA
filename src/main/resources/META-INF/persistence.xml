@@ -7,7 +7,7 @@
     <class>org.demo.entities.Product</class>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
-      <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:loja"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:h2:file:/home/lelton/IntellijProjects/08-Alura/hibernate_JPA/loja"/>
       <property name="javax.persistence.jdbc.user" value="sa"/>
       <property name="javax.persistence.jdbc.password" value=""/>
       <property name="hibernate.hbm2ddl.auto" value="create"/>

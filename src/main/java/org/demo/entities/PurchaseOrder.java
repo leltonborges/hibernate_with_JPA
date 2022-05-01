@@ -9,21 +9,18 @@ import java.util.Date;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
-@NoArgsConstructor
 @Entity
+@EqualsAndHashCode(exclude = {"orderPK","createdAt", "updatedAt"})
 @Table(name = "tb_purchase_order")
 public class PurchaseOrder {
 
     @EmbeddedId
     private PurchaseOrderPK orderPK;
 
-    @NonNull
     @MapsId("product")
     @ManyToOne
     private Product product;
 
-    @NonNull
     @MapsId("client")
     @ManyToOne
     private Client client;
@@ -33,4 +30,13 @@ public class PurchaseOrder {
     @UpdateTimestamp
     private Date updatedAt;
 
+    public PurchaseOrder() {
+        this.orderPK = new PurchaseOrderPK();
+    }
+
+    public PurchaseOrder(Product product, Client client) {
+        this();
+        this.product = product;
+        this.client = client;
+    }
 }
