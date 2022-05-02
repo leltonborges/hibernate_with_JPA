@@ -41,7 +41,8 @@ public class ProductDAO {
     }
 
     public List<Product> findByCategoryName(String name){
-        return manager.createQuery("select p from Product p where p.category.nome = :cName", Product.class)
+//        return manager.createQuery("select p from Product p where p.category.nome = :cName", Product.class)
+        return manager.createNamedQuery("Product.productByCategory", Product.class)
                 .setParameter("cName", name)
                 .getResultList();
     }

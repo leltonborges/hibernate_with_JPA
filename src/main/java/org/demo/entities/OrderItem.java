@@ -16,11 +16,11 @@ public class OrderItem {
     private OrderItemPK orderPK;
 
     @MapsId("product")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 
     @MapsId("order")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Order order;
 
     private Integer quantity;

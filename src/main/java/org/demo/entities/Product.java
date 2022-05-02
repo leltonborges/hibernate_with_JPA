@@ -14,6 +14,8 @@ import java.util.Date;
 @Entity
 @ToString
 @Table(name = "tb_product")
+@NamedQuery(name = "Product.productByCategory",
+        query = "select p from Product p where p.category.nome = :cName")
 public class Product implements Serializable {
     private static final long serialVersionUID = -3123991946224455757L;
 
@@ -24,7 +26,7 @@ public class Product implements Serializable {
     private String name;
     private String description;
     private BigDecimal price;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
     @CreationTimestamp
     private Date createdAt;

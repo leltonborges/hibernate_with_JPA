@@ -22,7 +22,7 @@ public class Order {
     @SequenceGenerator(name = "sequence_table_order", sequenceName = "SEQUENCE_TB_ORDER", initialValue = 1, allocationSize = 1)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Client client;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)

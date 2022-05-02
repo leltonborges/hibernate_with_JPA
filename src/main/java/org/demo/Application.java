@@ -10,9 +10,15 @@ public class Application {
     public static void main(String[] args) {
         saveEntities();
 //        findEntities();
+        selectNew();
+    }
+
+    private static void selectNew() {
         EntityManager manager = JPAUtil.getEntityManager();
         OrderDAO orderDAO = new OrderDAO(manager);
         orderDAO.getSalesReport().forEach(System.out::println);
+        Order order = manager.find(Order.class, 1l);
+        order.getItems().size();
     }
 
     private static void findEntities() {
@@ -64,5 +70,6 @@ public class Application {
         categoryDAO.delete(catDelete);
         manager.getTransaction().commit();
 
+        System.out.println(productDAO.findByCategoryName("Celulares"));
     }
 }
