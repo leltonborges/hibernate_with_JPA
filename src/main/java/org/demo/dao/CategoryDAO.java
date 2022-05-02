@@ -1,7 +1,6 @@
 package org.demo.dao;
 
 import org.demo.entities.Category;
-import org.demo.entities.Client;
 import javax.persistence.EntityManager;
 import java.util.List;
 

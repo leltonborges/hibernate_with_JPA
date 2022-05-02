@@ -23,18 +23,23 @@ public class OrderItem {
     @ManyToOne
     private Order order;
 
-    private Integer quantidade;
-    private BigDecimal unitPrice;
+    private Integer quantity;
+    @Column(name = "unit_price")
+    private BigDecimal unitPrice = BigDecimal.ONE;
 
     public OrderItem() {
         this.orderPK = new OrderItemPK();
     }
 
-    public OrderItem(Product product, Order order, Integer quantidade) {
+    public OrderItem(Product product, Order order, Integer quantity) {
         this();
         this.product = product;
         this.order = order;
-        this.quantidade = quantidade;
+        this.quantity = quantity;
         this.unitPrice = product.getPrice();
+    }
+
+    public BigDecimal getTotalItem(){
+        return this.getUnitPrice().multiply(new BigDecimal(this.quantity));
     }
 }

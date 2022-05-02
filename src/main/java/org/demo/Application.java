@@ -9,10 +9,7 @@ import java.math.BigDecimal;
 public class Application {
     public static void main(String[] args) {
         saveEntities();
-        findEntities();
-
-
-
+//        findEntities();
     }
 
     private static void findEntities() {
@@ -26,12 +23,17 @@ public class Application {
 
     private static void saveEntities() {
         Category celulares = new Category(null, "Celulares");
-        Category carros = new Category(null, "Carros");
-        Product p1 = new Product(null, "Phone", "Xioami Redmi", BigDecimal.valueOf(2399), celulares, null, null);
+        Category informatica = new Category(null, "Informatica");
+        Category catDelete = new Category(null, "delete");
+        Product p1 = new Product(null, "Phone", "Xioami Redmi", BigDecimal.valueOf(2399), celulares);
+        Product p2 = new Product(null, "HD Externo", "HD Externo de 500 GB", BigDecimal.valueOf(399.99), informatica);
         Client  lia = new Client(null, "Lia", "lia@lia.com", "1825");
         Order order1 = new Order(null, lia);
-        OrderItem orderItem = new OrderItem(p1, order1, 32);
-        order1.addItem(orderItem);
+        OrderItem orderItem1 = new OrderItem(p1, order1, 10);
+        OrderItem orderItem2 = new OrderItem(p2, order1, 5);
+        order1.addItem(orderItem1);
+        order1.addItem(orderItem2);
+        order1.calcTotalValue();
 
         EntityManager manager = JPAUtil.getEntityManager();
         CategoryDAO categoryDAO = new CategoryDAO(manager);
@@ -42,20 +44,24 @@ public class Application {
 
         manager.getTransaction().begin();
         categoryDAO.save(celulares);
-        categoryDAO.save(carros);
+        categoryDAO.save(informatica);
+        categoryDAO.save(catDelete);
         manager.flush();
         productDAO.save(p1);
         clientDAO.save(lia);
         manager.flush();
         orderDAO.save(order1);
-        itemOrderDAO.save(orderItem);
+        itemOrderDAO.save(orderItem1);
+        itemOrderDAO.save(orderItem2);
         manager.flush();
         manager.clear();
-        carros = categoryDAO.update(carros);
-        orderItem = itemOrderDAO.update(orderItem);
-        itemOrderDAO.save(orderItem);
-
-        manager.remove(carros);
+        catDelete = categoryDAO.update(catDelete);
+        orderItem1 = itemOrderDAO.update(orderItem1);
+        itemOrderDAO.save(orderItem1);
+        categoryDAO.delete(catDelete);
         manager.getTransaction().commit();
+
+        BigDecimal totalSales =  orderDAO.totalValueSold();
+        System.out.println(totalSales);
     }
 }

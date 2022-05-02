@@ -10,7 +10,6 @@ import java.util.Date;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @ToString
@@ -31,4 +30,12 @@ public class Product implements Serializable {
     private Date createdAt;
     @UpdateTimestamp
     private Date updatedAt;
+
+    public Product(Long id, String name, String description, BigDecimal price, Category category) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+    }
 }

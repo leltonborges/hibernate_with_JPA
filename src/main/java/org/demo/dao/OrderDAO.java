@@ -2,6 +2,7 @@ package org.demo.dao;
 
 import org.demo.entities.Order;
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class OrderDAO {
@@ -31,4 +32,11 @@ public class OrderDAO {
     public List<Order> findAll(){
         return manager.createQuery("select p from Order p", Order.class).getResultList();
     }
+
+    public BigDecimal totalValueSold(){
+        return this.manager.createQuery("select SUM(o.totalValue) from Order o", BigDecimal.class)
+                .getSingleResult();
+
+    }
+
 }
