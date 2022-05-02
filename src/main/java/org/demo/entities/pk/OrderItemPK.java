@@ -12,9 +12,9 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PurchaseOrderPK implements Serializable {
+public class OrderItemPK implements Serializable {
     private static final long serialVersionUID = 439447912036923852L;
 
     private Long product;
-    private Long client;
+    private Long order;
 }

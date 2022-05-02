@@ -1,7 +1,6 @@
 package org.demo.dao;
 
 import org.demo.entities.Client;
-import org.demo.entities.PurchaseOrder;
 import javax.persistence.EntityManager;
 import java.util.List;
 

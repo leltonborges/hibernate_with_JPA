@@ -2,6 +2,7 @@ package org.demo.dao;
 
 import org.demo.entities.Product;
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class ProductDAO {
@@ -45,5 +46,11 @@ public class ProductDAO {
                 .getResultList();
     }
 
+    public BigDecimal findByProductPrice(Long id){
+        return manager.createQuery("select p.price from Product p where p.id = :pkProduct", BigDecimal.class)
+                .setParameter("pkProduct", id)
+                .getSingleResult();
+
+    }
 
 }
