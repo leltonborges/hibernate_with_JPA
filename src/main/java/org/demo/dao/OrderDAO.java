@@ -1,6 +1,7 @@
 package org.demo.dao;
 
 import org.demo.entities.Order;
+import org.demo.vo.SoldReportVO;
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.util.List;
@@ -39,4 +40,8 @@ public class OrderDAO {
 
     }
 
+    public List<SoldReportVO> getSalesReport(){
+        return this.manager.createQuery("SELECT new org.demo.vo.SoldReportVO(p.name, SUM(item.quantity), MAX(p.createdAt)) FROM Order o join o.items item join item.product p GROUP BY p.name order by item.quantity desc", SoldReportVO.class)
+                .getResultList();
+    }
 }

@@ -10,6 +10,9 @@ public class Application {
     public static void main(String[] args) {
         saveEntities();
 //        findEntities();
+        EntityManager manager = JPAUtil.getEntityManager();
+        OrderDAO orderDAO = new OrderDAO(manager);
+        orderDAO.getSalesReport().forEach(System.out::println);
     }
 
     private static void findEntities() {
@@ -61,7 +64,5 @@ public class Application {
         categoryDAO.delete(catDelete);
         manager.getTransaction().commit();
 
-        BigDecimal totalSales =  orderDAO.totalValueSold();
-        System.out.println(totalSales);
     }
 }
