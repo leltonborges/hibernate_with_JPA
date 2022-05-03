@@ -5,20 +5,27 @@ import org.demo.entities.*;
 import org.demo.utils.JPAUtil;
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class Application {
     public static void main(String[] args) {
         saveEntities();
-//        findEntities();
+        findEntities();
         selectNew();
     }
 
     private static void selectNew() {
         EntityManager manager = JPAUtil.getEntityManager();
         OrderDAO orderDAO = new OrderDAO(manager);
+        ProductDAO productDAO = new ProductDAO(manager);
+
         orderDAO.getSalesReport().forEach(System.out::println);
-        Order order = manager.find(Order.class, 1l);
-        order.getItems().size();
+        Order order = manager.createQuery("SELECT o FROM Order o join fetch o.client where o.id = :id", Order.class)
+                .setParameter("id", 1L)
+                .getSingleResult();
+        order.getClient().getName();
+
+        productDAO.findByParameteresWithCriteria("Phone", null, new Date());
     }
 
     private static void findEntities() {
