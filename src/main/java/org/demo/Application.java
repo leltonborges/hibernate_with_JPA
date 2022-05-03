@@ -43,7 +43,7 @@ public class Application {
         Category catDelete = new Category(null, "delete");
         Product p1 = new Product(null, "Phone", "Xioami Redmi", BigDecimal.valueOf(2399), celulares);
         Product p2 = new Product(null, "HD Externo", "HD Externo de 500 GB", BigDecimal.valueOf(399.99), informatica);
-        Client  lia = new Client(null, "Lia", "lia@lia.com", "1825");
+        Client  lia = new Client(null, "Lia", "lia@lia.com", new PersonalData("21221", 156));
         Order order1 = new Order(null, lia);
         OrderItem orderItem1 = new OrderItem(p1, order1, 10);
         OrderItem orderItem2 = new OrderItem(p2, order1, 5);
