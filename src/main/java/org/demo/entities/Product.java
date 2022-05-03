@@ -16,6 +16,7 @@ import java.util.Date;
 @Table(name = "tb_product")
 @NamedQuery(name = "Product.productByCategory",
         query = "select p from Product p where p.category.nome = :cName")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Product implements Serializable {
     private static final long serialVersionUID = -3123991946224455757L;
 
