@@ -38,9 +38,9 @@ public class Application {
     }
 
     private static void saveEntities() {
-        Category celulares = new Category(null, "Celulares");
-        Category informatica = new Category(null, "Informatica");
-        Category catDelete = new Category(null, "delete");
+        Category celulares = new Category(new CategoryID(1L, 3L), "Celulares");
+        Category informatica = new Category(new CategoryID(1L, 1L), "Informatica");
+        Category catDelete = new Category(new CategoryID(2L, 3L), "delete");
         Product p1 = new Product(null, "Phone", "Xioami Redmi", BigDecimal.valueOf(2399), celulares);
         Product p2 = new Product(null, "HD Externo", "HD Externo de 500 GB", BigDecimal.valueOf(399.99), informatica);
         Client  lia = new Client(null, "Lia", "lia@lia.com", new PersonalData("21221", 156));
@@ -68,6 +68,7 @@ public class Application {
         manager.flush();
         orderDAO.save(order1);
         itemOrderDAO.save(orderItem1);
+        manager.flush();
         itemOrderDAO.save(orderItem2);
         manager.flush();
         manager.clear();
